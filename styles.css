@@ -1,0 +1,15 @@
+.template-card {
+    transition: transform 0.2s;
+    margin-bottom: 20px;
+}
+
+.template-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.template-preview {
+    height: 200px;
+    object-fit: cover;
+    width: 100%;
+} 

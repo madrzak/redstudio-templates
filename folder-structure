@@ -1,0 +1,12 @@
+templates/
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   └── main.js
+└── templates/
+    └── landing-page/
+        ├── index.html
+        ├── style.css
+        └── assets/
+            └── (template specific assets will go here) 
