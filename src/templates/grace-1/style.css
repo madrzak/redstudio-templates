@@ -66,16 +66,54 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    animation: sway 2.5s ease-in-out infinite alternate;
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.15));
 }
 
-@keyframes sway {
-    from {
-        transform: rotate(calc(var(--rotation, -15deg) - 8deg)) scaleX(var(--scale-x, 1));
+/* Gentle swaying animation */
+.grass.sway-gentle {
+    animation: swayGentle var(--sway-duration, 2.5s) ease-in-out infinite alternate;
+    animation-delay: var(--sway-delay, 0s);
+}
+
+/* Wider swaying animation */
+.grass.sway-wide {
+    animation: swayWide var(--sway-duration, 2.5s) ease-in-out infinite alternate;
+    animation-delay: var(--sway-delay, 0s);
+}
+
+/* Erratic movement animation */
+.grass.sway-erratic {
+    animation: swayErratic var(--sway-duration, 2.5s) ease-in-out infinite alternate;
+    animation-delay: var(--sway-delay, 0s);
+}
+
+@keyframes swayGentle {
+    0% {
+        transform: rotate(calc(var(--sway-angle, -15deg) - 5deg)) scaleX(var(--scale-x, 1));
     }
-    to {
-        transform: rotate(calc(var(--rotation, -15deg) + 8deg)) scaleX(var(--scale-x, 1));
+    100% {
+        transform: rotate(calc(var(--sway-angle, -15deg) + 5deg)) scaleX(var(--scale-x, 1));
+    }
+}
+
+@keyframes swayWide {
+    0% {
+        transform: rotate(calc(var(--sway-angle, -15deg) - 12deg)) scaleX(var(--scale-x, 1));
+    }
+    100% {
+        transform: rotate(calc(var(--sway-angle, -15deg) + 12deg)) scaleX(var(--scale-x, 1));
+    }
+}
+
+@keyframes swayErratic {
+    0% {
+        transform: rotate(calc(var(--sway-angle, -15deg) - 8deg)) scaleX(var(--scale-x, 1));
+    }
+    50% {
+        transform: rotate(calc(var(--sway-angle, -15deg) + 3deg)) scaleX(var(--scale-x, 1));
+    }
+    100% {
+        transform: rotate(calc(var(--sway-angle, -15deg) + 10deg)) scaleX(var(--scale-x, 1));
     }
 }
 

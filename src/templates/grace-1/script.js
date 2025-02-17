@@ -1,4 +1,3 @@
-
 function initGrass() {
     const container = document.querySelector('.grass-container');
     const bunchCount = 25; // Increased density for bottom edge
@@ -17,7 +16,6 @@ function addGrassBunch(container, index, totalBunches) {
     
     // Position along bottom edge
     bunch.style.bottom = '-20px';
-    // Distribute bunches evenly with some randomness
     const position = (index / totalBunches) * 100 + (Math.random() * 8 - 4);
     bunch.style.left = `${position}%`;
     bunch.style.transformOrigin = 'top center';
@@ -44,19 +42,38 @@ function addGrassBunch(container, index, totalBunches) {
         blade.style.left = `${spreadX}px`;
         blade.style.bottom = `${spreadY}px`;
         
+        // Advanced animation variations
+        const animationType = Math.floor(Math.random() * 3); // 3 different animation patterns
+        const baseDelay = Math.random() * 2;
+        const baseDuration = 2 + Math.random() * 2;
+        
+        // Set custom properties for animation
+        blade.style.setProperty('--sway-angle', `${-15 + Math.random() * 10}deg`); // Base angle variation
+        blade.style.setProperty('--sway-duration', `${baseDuration}s`);
+        blade.style.setProperty('--sway-delay', `${baseDelay}s`);
+        
+        // Assign different animation patterns
+        switch(animationType) {
+            case 0:
+                blade.classList.add('sway-gentle');
+                break;
+            case 1:
+                blade.classList.add('sway-wide');
+                break;
+            case 2:
+                blade.classList.add('sway-erratic');
+                break;
+        }
+        
         // Rotation and scale variations
         const baseRotation = -30 + Math.random() * 60; // -30 to 30 degrees
-        const scaleX = 0.7 + Math.random() * 0.6; // Scale between 0.7 and 1.3
-        const scaleY = 0.9 + Math.random() * 0.2; // Slight height variation
+        const scaleX = 0.7 + Math.random() * 0.6;
+        const scaleY = 0.9 + Math.random() * 0.2;
         blade.style.transform = `
             rotate(${baseRotation}deg) 
             scaleX(${scaleX})
             scaleY(${scaleY})
         `;
-        
-        // Animation variations
-        blade.style.animationDelay = `${Math.random() * 2}s`;
-        blade.style.animationDuration = `${2 + Math.random() * 2}s`;
         
         // Add some blades behind others for depth
         blade.style.zIndex = Math.floor(Math.random() * 3);
@@ -66,5 +83,6 @@ function addGrassBunch(container, index, totalBunches) {
     
     container.appendChild(bunch);
 }
+
 // Initialize when the document is loaded
 document.addEventListener('DOMContentLoaded', initGrass); 
