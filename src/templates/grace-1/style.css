@@ -57,28 +57,29 @@ body {
 
 .grass-container {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     pointer-events: none;
 }
 
 .grass {
     position: absolute;
-    bottom: -20px;
-    width: 40px;
-    height: 100px;
-    background: linear-gradient(to top, var(--grass-color), var(--grass-dark));
-    clip-path: polygon(50% 0, 100% 100%, 0 100%);
-    transform-origin: bottom;
-    animation: sway 3s ease-in-out infinite;
+    width: 2px;
+    height: 30px;
+    background: linear-gradient(to top, #4a8505, #7bc242);
+    transform-origin: bottom center;
+    animation: sway 2s ease-in-out infinite alternate;
 }
 
 @keyframes sway {
-    0%, 100% {
-        transform: rotate(0deg);
+    from {
+        transform: rotate(calc(var(--base-rotation, 0deg) - 20deg));
     }
-    50% {
-        transform: rotate(5deg);
+    to {
+        transform: rotate(calc(var(--base-rotation, 0deg) + 20deg));
     }
 }
 
