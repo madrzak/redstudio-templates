@@ -1,7 +1,3 @@
-// Array of leaf image URLs - you should replace these with actual leaf image URLs
-const leafImages = [
-    'assets/leaf.svg',
-];
 
 function initGrass() {
     const container = document.querySelector('.grass-container');
@@ -70,43 +66,5 @@ function addGrassBunch(container, index, totalBunches) {
     
     container.appendChild(bunch);
 }
-
-function addLeaf(container) {
-    const leaf = document.createElement('div');
-    leaf.className = 'leaf';
-    
-    // Randomly select a leaf image
-    const leafImage = leafImages[Math.floor(Math.random() * leafImages.length)];
-    leaf.style.backgroundImage = `url(${leafImage})`;
-
-    const side = Math.floor(Math.random() * 4);
-    const size = 20 + Math.random() * 20; // Random size between 20px and 40px
-    
-    leaf.style.width = `${size}px`;
-    leaf.style.height = `${size}px`;
-    
-    switch(side) {
-        case 0: // Top
-            leaf.style.top = '-20px';
-            leaf.style.left = `${Math.random() * 100}%`;
-            break;
-        case 1: // Right
-            leaf.style.right = '-20px';
-            leaf.style.top = `${Math.random() * 100}%`;
-            break;
-        case 2: // Bottom
-            leaf.style.bottom = '-20px';
-            leaf.style.left = `${Math.random() * 100}%`;
-            break;
-        case 3: // Left
-            leaf.style.left = '-20px';
-            leaf.style.top = `${Math.random() * 100}%`;
-            break;
-    }
-
-    leaf.style.animationDelay = `${Math.random() * 4}s`;
-    container.appendChild(leaf);
-}
-
 // Initialize when the document is loaded
 document.addEventListener('DOMContentLoaded', initGrass); 
