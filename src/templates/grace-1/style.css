@@ -159,11 +159,9 @@ body {
     font-size: 4rem;
     letter-spacing: 0.1em;
     font-family: 'Righteous', cursive;
-    font-weight: bold;
-    background: linear-gradient(45deg, #2ecc71, #27ae60);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.1);
+    font-weight: normal;
+    color: #000;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
     transform: translateY(-20%);
     user-select: none;
 }
