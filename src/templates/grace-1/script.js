@@ -1,3 +1,6 @@
+// Animation speed control - lower = faster, higher = slower
+const ANIMATION_SPEED = 1.0;
+
 function initGrass() {
     const container = document.querySelector('.grass-container');
     const bunchCount = 25; // Increased density for bottom edge
@@ -44,11 +47,11 @@ function addGrassBunch(container, index, totalBunches) {
         
         // Advanced animation variations
         const animationType = Math.floor(Math.random() * 3); // 3 different animation patterns
-        const baseDelay = Math.random() * 2;
-        const baseDuration = 2 + Math.random() * 2;
+        const baseDelay = Math.random() * 2 * ANIMATION_SPEED;
+        const baseDuration = (2 + Math.random() * 2) * ANIMATION_SPEED;
         
         // Set custom properties for animation
-        blade.style.setProperty('--sway-angle', `${-15 + Math.random() * 10}deg`); // Base angle variation
+        blade.style.setProperty('--sway-angle', `${-15 + Math.random() * 10}deg`);
         blade.style.setProperty('--sway-duration', `${baseDuration}s`);
         blade.style.setProperty('--sway-delay', `${baseDelay}s`);
         
@@ -66,7 +69,7 @@ function addGrassBunch(container, index, totalBunches) {
         }
         
         // Rotation and scale variations
-        const baseRotation = -30 + Math.random() * 60; // -30 to 30 degrees
+        const baseRotation = -30 + Math.random() * 60;
         const scaleX = 0.7 + Math.random() * 0.6;
         const scaleY = 0.9 + Math.random() * 0.2;
         blade.style.transform = `
