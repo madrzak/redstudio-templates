@@ -1,20 +1,8 @@
-// Function to get template information from the directory structure
-function getTemplates() {
-    // For a static site, we'll hardcode the template folders array
-    // but organize it in a maintainable way
-    const templateFolders = [
-        {
-            folder: 'landing-page',
-            info: {
-                name: "Landing Page",
-                description: "A clean and modern landing page with hero section and features",
-                thumbnail: "/src/templates/landing-page/assets/thumbnail.png",
-                path: "/src/templates/landing-page/index.html"
-            }
-        }
-    ];
+import { templates } from './templates/templates.config.js';
 
-    return templateFolders.map(t => t.info);
+// Function to get template information
+function getTemplates() {
+    return templates.map(t => t.info);
 }
 
 // Function to render template cards

@@ -1,6 +1,7 @@
 /* Modern color scheme */
 :root {
     --primary: #000000;
+    --primary-hover: #333333;
     --secondary: #64748b;
     --dark: #1e293b;
     --light: #f8fafc;
@@ -22,8 +23,8 @@
 }
 
 .btn-primary:hover {
-    background-color: #1d4ed8;
-    border-color: #1d4ed8;
+    background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
     transform: translateY(-1px);
 }
 

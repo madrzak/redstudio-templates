@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grace Template</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Grass elements that will be animated -->
+        <div class="grass-container">
+            <!-- We'll generate these grass elements with JS -->
+            <div class="grass"></div>
+            <div class="grass"></div>
+            <div class="grass"></div>
+            <!-- More grass elements will be added dynamically -->
+        </div>
+
+        <div class="content">
+            <div class="image-wrapper">
+                <img src="https://source.unsplash.com/random/800x600" alt="Central Image" class="main-image">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Generate grass elements
+        const grassContainer = document.querySelector('.grass-container');
+        const grassCount = 100; // Number of grass elements
+
+        for (let i = 0; i < grassCount; i++) {
+            const grass = document.createElement('div');
+            grass.className = 'grass';
+            grass.style.left = `${Math.random() * 100}%`;
+            grass.style.animationDelay = `${Math.random() * 2}s`;
+            grassContainer.appendChild(grass);
+        }
+    </script>
+</body>
+</html>
