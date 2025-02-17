@@ -34,12 +34,14 @@ function renderTemplateCards() {
                         </div>
                         <div class="col-md-6">
                             <div class="card-body d-flex flex-column h-100">
-                                <div>
-                                    <h5 class="card-title">${template.name}</h5>
-                                    <p class="card-text">${template.description}</p>
-                                </div>
-                                <div class="mt-auto text-end">
-                                    <a href="${template.path}" class="btn btn-primary">View Template</a>
+                                <div class="d-flex justify-content-between align-items-start">
+                                    <div class="flex-grow-1">
+                                        <h5 class="card-title">${template.name}</h5>
+                                        <p class="card-text">${template.description}</p>
+                                    </div>
+                                    <div class="btn-container">
+                                        <a href="${template.path}" class="btn btn-primary">View</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

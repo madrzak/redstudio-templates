@@ -1,6 +1,6 @@
 /* Modern color scheme */
 :root {
-    --primary: #2563eb;
+    --primary: #000000;
     --secondary: #64748b;
     --dark: #1e293b;
     --light: #f8fafc;
@@ -15,6 +15,10 @@
     padding: 0.75rem 1.5rem;
     font-weight: 500;
     transition: all 0.2s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
 }
 
 .btn-primary:hover {
@@ -53,4 +57,10 @@
 
 .card-text {
     color: var(--secondary);
+}
+
+/* Card layout adjustments */
+.card-body .btn-container {
+    min-width: 150px;
+    margin-left: 1rem;
 } 
