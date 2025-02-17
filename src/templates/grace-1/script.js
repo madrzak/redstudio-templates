@@ -10,7 +10,51 @@ const GRASS_TYPES = [
 
 function initGrass() {
     const container = document.querySelector('.grass-container');
-    const bunchCount = 25;
+    const bunchCount = 10;
+
+    // Make container interactive but keep original style
+    container.style.cssText = `
+        position: relative;
+        width: 100%;
+        pointer-events: all;
+    `;
+    
+    // Add test dot
+    const testDot = document.createElement('div');
+    testDot.style.cssText = `
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: red;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 1000;
+    `;
+    container.appendChild(testDot);
+    
+    // Add multiple event listeners to debug
+    ['mousemove', 'pointermove'].forEach(eventType => {
+        container.addEventListener(eventType, (e) => {
+            console.log(`${eventType} detected:`, e.clientX, e.clientY);
+            
+            const rect = container.getBoundingClientRect();
+            console.log('Container bounds:', rect.left, rect.top, rect.width, rect.height);
+            
+            testDot.style.left = (e.clientX - rect.left) + 'px';
+            testDot.style.top = (e.clientY - rect.top) + 'px';
+            
+            handleMouseMove(e);
+        });
+    });
+
+    // Also try document-level event listening
+    document.addEventListener('mousemove', (e) => {
+        const rect = container.getBoundingClientRect();
+        if (e.clientX >= rect.left && e.clientX <= rect.right &&
+            e.clientY >= rect.top && e.clientY <= rect.bottom) {
+            console.log('Mouse over container area!');
+        }
+    });
 
     for (let i = 0; i < bunchCount; i++) {
         addGrassBunch(container, i, bunchCount);
@@ -23,10 +67,12 @@ function addGrassBunch(container, index, totalBunches) {
     
     const bladesInBunch = 8 + Math.floor(Math.random() * 5);
     
-    bunch.style.bottom = '-20px';
+    // Return to original positioning but keep absolute
+    bunch.style.position = 'absolute';
+    bunch.style.bottom = '-20px';  // Original bottom position
     const position = (index / totalBunches) * 100 + (Math.random() * 8 - 4);
     bunch.style.left = `${position}%`;
-    bunch.style.transformOrigin = 'top center';
+    bunch.style.transformOrigin = 'top center';  // Back to original top center
     
     // Create blades with varying properties for realism
     for (let i = 0; i < bladesInBunch; i++) {
@@ -92,6 +138,18 @@ function addGrassBunch(container, index, totalBunches) {
                       (0.7 + Math.random() * 0.6);
         const scaleY = 0.9 + Math.random() * 0.2;
         
+        // Add data attributes for mouse interaction
+        blade.dataset.baseRotation = baseRotation;
+        blade.dataset.mouseInfluence = 0;
+        
+        // Add transition for mouse movement
+        blade.style.transition = 'transform 0.1s ease-out'; // Faster transition
+        
+        // Store initial transform values
+        blade.dataset.baseRotation = baseRotation;
+        blade.dataset.scaleX = scaleX;
+        blade.dataset.scaleY = scaleY;
+        
         blade.style.transform = `
             rotate(${baseRotation}deg) 
             scaleX(${scaleX})
@@ -106,5 +164,56 @@ function addGrassBunch(container, index, totalBunches) {
     container.appendChild(bunch);
 }
 
-// Initialize when the document is loaded
-document.addEventListener('DOMContentLoaded', initGrass); 
+// Update handleMouseMove to be more aggressive
+function handleMouseMove(e) {
+    const container = document.querySelector('.grass-container');
+    const containerRect = container.getBoundingClientRect();
+    const mouseX = e.clientX - containerRect.left;
+    const mouseY = e.clientY - containerRect.top;
+    
+    console.log('Processing mouse move at:', mouseX, mouseY);
+    
+    const blades = document.querySelectorAll('.grass');
+    
+    blades.forEach(blade => {
+        const bladeRect = blade.getBoundingClientRect();
+        const bladeCenterX = bladeRect.left + bladeRect.width / 2 - containerRect.left;
+        const bladeCenterY = bladeRect.top + bladeRect.height / 2 - containerRect.top;
+        
+        const dx = mouseX - bladeCenterX;
+        const dy = mouseY - bladeCenterY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        // Stronger effect with larger range
+        if (distance < 300) {  // Much larger range
+            const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+            const baseRotation = parseFloat(blade.dataset.baseRotation);
+            
+            // Stronger influence that pushes away from mouse
+            const influence = Math.pow(1 - distance / 300, 0.3) * 180; // Much stronger effect
+            const pushDirection = angle + 180; // Point away from mouse
+            const newRotation = baseRotation + (influence * Math.sign(Math.sin((pushDirection - baseRotation) * Math.PI / 180)));
+            
+            console.log(`Blade at ${Math.round(distance)}px: rotation=${Math.round(newRotation)}°`);
+            
+            blade.style.transform = `
+                rotate(${newRotation}deg)
+                scaleX(${blade.dataset.scaleX})
+                scaleY(${blade.dataset.scaleY})
+            `;
+        } else {
+            // Return to base position
+            blade.style.transform = `
+                rotate(${blade.dataset.baseRotation}deg)
+                scaleX(${blade.dataset.scaleX})
+                scaleY(${blade.dataset.scaleY})
+            `;
+        }
+    });
+}
+
+// Initialize only once when document is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded');
+    initGrass();
+}); 
