@@ -26,13 +26,23 @@ function renderTemplateCards() {
     
     templates.forEach(template => {
         const card = `
-            <div class="col-md-4">
-                <div class="card mb-4">
-                    <img src="${template.thumbnail}" class="card-img-top template-preview" alt="${template.name}">
-                    <div class="card-body">
-                        <h5 class="card-title">${template.name}</h5>
-                        <p class="card-text">${template.description}</p>
-                        <a href="${template.path}" class="btn btn-primary">View Template</a>
+            <div class="col-12 mb-4">
+                <div class="card">
+                    <div class="row no-gutters">
+                        <div class="col-md-6">
+                            <img src="${template.thumbnail}" class="template-preview w-100 h-100" alt="${template.name}">
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-body d-flex flex-column h-100">
+                                <div>
+                                    <h5 class="card-title">${template.name}</h5>
+                                    <p class="card-text">${template.description}</p>
+                                </div>
+                                <div class="mt-auto text-end">
+                                    <a href="${template.path}" class="btn btn-primary">View Template</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
