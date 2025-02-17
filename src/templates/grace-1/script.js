@@ -10,51 +10,20 @@ const GRASS_TYPES = [
 
 function initGrass() {
     const container = document.querySelector('.grass-container');
-    const bunchCount = 10;
+    const bunchCount = 50;
 
     // Make container interactive but keep original style
     container.style.cssText = `
-        position: relative;
+        position: absolute;
+        bottom: 0;
+        left: 0;
         width: 100%;
+        height: 200px;
         pointer-events: all;
     `;
     
-    // Add test dot
-    const testDot = document.createElement('div');
-    testDot.style.cssText = `
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: red;
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 1000;
-    `;
-    container.appendChild(testDot);
-    
-    // Add multiple event listeners to debug
-    ['mousemove', 'pointermove'].forEach(eventType => {
-        container.addEventListener(eventType, (e) => {
-            console.log(`${eventType} detected:`, e.clientX, e.clientY);
-            
-            const rect = container.getBoundingClientRect();
-            console.log('Container bounds:', rect.left, rect.top, rect.width, rect.height);
-            
-            testDot.style.left = (e.clientX - rect.left) + 'px';
-            testDot.style.top = (e.clientY - rect.top) + 'px';
-            
-            handleMouseMove(e);
-        });
-    });
-
-    // Also try document-level event listening
-    document.addEventListener('mousemove', (e) => {
-        const rect = container.getBoundingClientRect();
-        if (e.clientX >= rect.left && e.clientX <= rect.right &&
-            e.clientY >= rect.top && e.clientY <= rect.bottom) {
-            console.log('Mouse over container area!');
-        }
-    });
+    // Add event listener for mouse movement
+    container.addEventListener('mousemove', handleMouseMove);
 
     for (let i = 0; i < bunchCount; i++) {
         addGrassBunch(container, i, bunchCount);
@@ -101,8 +70,10 @@ function addGrassBunch(container, index, totalBunches) {
         // Position within bunch - create a natural spread
         const spreadX = -25 + Math.random() * 50;
         const spreadY = Math.random() * 15;
+        blade.style.position = 'absolute';  // Ensure absolute positioning
         blade.style.left = `${spreadX}px`;
         blade.style.bottom = `${spreadY}px`;
+        blade.style.transformOrigin = 'bottom center'; // Set transform origin to bottom center
         
         // Advanced animation variations
         const animationType = Math.floor(Math.random() * 3);
@@ -143,13 +114,14 @@ function addGrassBunch(container, index, totalBunches) {
         blade.dataset.mouseInfluence = 0;
         
         // Add transition for mouse movement
-        blade.style.transition = 'transform 0.1s ease-out'; // Faster transition
+        blade.style.transition = 'transform 0.2s cubic-bezier(0.4, 0, 0.2, 1)';
         
         // Store initial transform values
         blade.dataset.baseRotation = baseRotation;
         blade.dataset.scaleX = scaleX;
         blade.dataset.scaleY = scaleY;
         
+        // Apply transform with proper origin point
         blade.style.transform = `
             rotate(${baseRotation}deg) 
             scaleX(${scaleX})
@@ -171,8 +143,6 @@ function handleMouseMove(e) {
     const mouseX = e.clientX - containerRect.left;
     const mouseY = e.clientY - containerRect.top;
     
-    console.log('Processing mouse move at:', mouseX, mouseY);
-    
     const blades = document.querySelectorAll('.grass');
     
     blades.forEach(blade => {
@@ -184,22 +154,29 @@ function handleMouseMove(e) {
         const dy = mouseY - bladeCenterY;
         const distance = Math.sqrt(dx * dx + dy * dy);
         
-        // Stronger effect with larger range
-        if (distance < 300) {  // Much larger range
+        // Smaller range, gentler effect
+        if (distance < 100) {  // Reduced range
             const angle = Math.atan2(dy, dx) * 180 / Math.PI;
             const baseRotation = parseFloat(blade.dataset.baseRotation);
             
-            // Stronger influence that pushes away from mouse
-            const influence = Math.pow(1 - distance / 300, 0.3) * 180; // Much stronger effect
-            const pushDirection = angle + 180; // Point away from mouse
-            const newRotation = baseRotation + (influence * Math.sign(Math.sin((pushDirection - baseRotation) * Math.PI / 180)));
+            // Gentler influence with smooth falloff
+            const influence = Math.pow(1 - distance / 100, 2) * 25; // Max 25 degrees
             
-            console.log(`Blade at ${Math.round(distance)}px: rotation=${Math.round(newRotation)}°`);
+            // Calculate bend direction based on mouse position
+            const bendDirection = angle + 180;
+            
+            // Smooth transition between base rotation and bend
+            const newRotation = baseRotation + (influence * Math.cos((bendDirection - baseRotation) * Math.PI / 180));
+            
+            // Add slight scale modification to simulate bending
+            const bendScale = 1 - (influence / 200); // Subtle scale reduction
+            const scaleX = parseFloat(blade.dataset.scaleX);
+            const scaleY = parseFloat(blade.dataset.scaleY) * bendScale;
             
             blade.style.transform = `
                 rotate(${newRotation}deg)
-                scaleX(${blade.dataset.scaleX})
-                scaleY(${blade.dataset.scaleY})
+                scaleX(${scaleX})
+                scaleY(${scaleY})
             `;
         } else {
             // Return to base position
