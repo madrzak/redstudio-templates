@@ -3,19 +3,13 @@ const leafImages = [
     'assets/leaf.svg',
 ];
 
-function initGreenery() {
+function initGrass() {
     const container = document.querySelector('.grass-container');
-    const bunchCount = 40; // Reduced count since each bunch contains multiple grass blades
-    const leafCount = 30;
+    const bunchCount = 40;
 
-    // Add grass bunches
+    // Add grass bunches around the container edges
     for (let i = 0; i < bunchCount; i++) {
         addGrassBunch(container);
-    }
-
-    // Add leaves
-    for (let i = 0; i < leafCount; i++) {
-        addLeaf(container);
     }
 }
 
@@ -24,57 +18,75 @@ function addGrassBunch(container) {
     bunch.className = 'grass-bunch';
     
     const side = Math.floor(Math.random() * 4);
-    const bladesInBunch = 5 + Math.floor(Math.random() * 4); // 5-8 blades per bunch
+    const bladesInBunch = 8 + Math.floor(Math.random() * 5); // 8-12 blades per bunch
     
     // Position the bunch
     switch(side) {
         case 0: // Top
-            bunch.style.top = '-20px'; // Move slightly outside container
+            bunch.style.top = '-20px';
             bunch.style.left = `${Math.random() * 100}%`;
             bunch.style.transformOrigin = 'bottom center';
             bunch.style.transform = 'rotate(180deg)';
             break;
         case 1: // Right
-            bunch.style.right = '-20px'; // Move slightly outside container
+            bunch.style.right = '-20px';
             bunch.style.top = `${Math.random() * 100}%`;
             bunch.style.transformOrigin = 'left center';
             bunch.style.transform = 'rotate(270deg)';
             break;
         case 2: // Bottom
-            bunch.style.bottom = '-20px'; // Move slightly outside container
+            bunch.style.bottom = '-20px';
             bunch.style.left = `${Math.random() * 100}%`;
             bunch.style.transformOrigin = 'top center';
             break;
         case 3: // Left
-            bunch.style.left = '-20px'; // Move slightly outside container
+            bunch.style.left = '-20px';
             bunch.style.top = `${Math.random() * 100}%`;
             bunch.style.transformOrigin = 'right center';
             bunch.style.transform = 'rotate(90deg)';
             break;
     }
 
-    // Add individual grass blades to the bunch
+    // Create blades with varying properties for realism
     for (let i = 0; i < bladesInBunch; i++) {
-        const grass = document.createElement('div');
-        grass.className = 'grass';
-        grass.style.backgroundImage = 'url(assets/grass.svg)';
-        grass.style.backgroundSize = 'contain';
-        grass.style.backgroundRepeat = 'no-repeat';
+        const blade = document.createElement('div');
+        blade.className = 'grass';
         
-        // Vary the size and position within the bunch
-        const height = 60 + Math.random() * 100;
-        grass.style.height = `${height}px`;
-        grass.style.width = '12px';
+        // Base properties
+        blade.style.backgroundImage = 'url(assets/grass.svg)';
+        blade.style.backgroundSize = 'contain';
+        blade.style.backgroundRepeat = 'no-repeat';
         
-        // Position within bunch - adjusted spread
-        grass.style.left = `${-15 + Math.random() * 30}px`; // Wider spread horizontally
-        grass.style.transform = `rotate(${-20 + Math.random() * 40}deg) scaleX(${0.8 + Math.random() * 0.4})`; // More rotation variation
+        // Vary the size
+        const heightVariation = 60 + Math.random() * 100; // Height between 60-160px
+        const widthVariation = 8 + Math.random() * 8; // Width between 8-16px
+        blade.style.height = `${heightVariation}px`;
+        blade.style.width = `${widthVariation}px`;
         
-        // Randomize animation
-        grass.style.animationDelay = `${Math.random() * 2}s`;
-        grass.style.animationDuration = `${2 + Math.random() * 2}s`;
+        // Position within bunch - create a natural spread
+        const spreadX = -20 + Math.random() * 40; // Wider spread
+        const spreadY = Math.random() * 10; // Slight vertical variation
+        blade.style.left = `${spreadX}px`;
+        blade.style.bottom = `${spreadY}px`;
         
-        bunch.appendChild(grass);
+        // Rotation and scale variations
+        const baseRotation = -25 + Math.random() * 50; // -25 to 25 degrees
+        const scaleX = 0.7 + Math.random() * 0.6; // Scale between 0.7 and 1.3
+        const scaleY = 0.9 + Math.random() * 0.2; // Slight height variation
+        blade.style.transform = `
+            rotate(${baseRotation}deg) 
+            scaleX(${scaleX})
+            scaleY(${scaleY})
+        `;
+        
+        // Animation variations
+        blade.style.animationDelay = `${Math.random() * 2}s`;
+        blade.style.animationDuration = `${2 + Math.random() * 2}s`;
+        
+        // Add some blades behind others for depth
+        blade.style.zIndex = Math.floor(Math.random() * 3);
+        
+        bunch.appendChild(blade);
     }
     
     container.appendChild(bunch);
@@ -118,4 +130,4 @@ function addLeaf(container) {
 }
 
 // Initialize when the document is loaded
-document.addEventListener('DOMContentLoaded', initGreenery); 
+document.addEventListener('DOMContentLoaded', initGrass); 
