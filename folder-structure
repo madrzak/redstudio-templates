@@ -1,10 +1,13 @@
-templates/
+/
 ├── index.html
-├── styles.css
-├── main.js
-└── templates/
-    └── landing-page/
-        ├── index.html
-        ├── style.css
-        └── assets/
-            └── (template specific assets will go here) 
+├── package.json
+├── package-lock.json
+└── src/
+    ├── main.js
+    ├── styles.css
+    └── templates/
+        └── landing-page/
+            ├── index.html
+            ├── style.css
+            └── assets/
+                └── thumbnail.png
