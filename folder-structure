@@ -1,9 +1,7 @@
 templates/
 ├── index.html
-├── css/
-│   └── styles.css
-├── js/
-│   └── main.js
+├── styles.css
+├── main.js
 └── templates/
     └── landing-page/
         ├── index.html

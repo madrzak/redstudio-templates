@@ -16,7 +16,6 @@ function renderTemplateCards() {
     templates.forEach(template => {
         const card = `
             <div class="col-md-4">
-                <div class="card template-card">
                     <img src="${template.thumbnail}" class="card-img-top template-preview" alt="${template.name}">
                     <div class="card-body">
                         <h5 class="card-title">${template.name}</h5>
