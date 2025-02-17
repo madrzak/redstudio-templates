@@ -1,7 +1,5 @@
 :root {
     --background-color: #f0f5ff;
-    --grass-color: #4CAF50;
-    --grass-dark: #388E3C;
 }
 
 body {
@@ -41,16 +39,6 @@ body {
     height: 50%;
 }
 
-/* Subtle hover effect for the tree */
-.center-design:hover .tree-leaves path {
-    transition: fill 0.3s ease;
-    fill: #74c278;
-}
-
-.center-design:hover .floating-elements circle {
-    transition: fill 0.3s ease;
-    fill: #b8e6ba;
-}
 
 .grass-container {
     position: absolute;
@@ -91,18 +79,10 @@ body {
     }
 }
 
-/* Vary animation timing for grass blades within bunch */
-.grass:nth-child(2n) {
-    animation-duration: 3s;
-}
-
-.grass:nth-child(3n) {
-    animation-duration: 2.7s;
-}
-
-.grass:nth-child(4n) {
-    animation-duration: 3.3s;
-}
+/* Vary animation timing for grass blades */
+.grass:nth-child(2n) { animation-duration: 3s; }
+.grass:nth-child(3n) { animation-duration: 2.7s; }
+.grass:nth-child(4n) { animation-duration: 3.3s; }
 
 .leaf {
     position: absolute;
