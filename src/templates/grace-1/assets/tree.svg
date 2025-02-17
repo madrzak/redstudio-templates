@@ -1,8 +1,5 @@
 <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-    <!-- Circular background -->
-    <circle cx="200" cy="200" r="180" fill="#f8f9fa" />
-    
-    <!-- Tree trunk -->
+        <!-- Tree trunk -->
     <path d="M190 350 
              C190 350, 180 300, 185 250
              C190 200, 195 180, 200 150
@@ -48,16 +45,5 @@
         </path>
     </g>
 
-    <!-- Small floating elements -->
-    <g class="floating-elements">
-        <circle cx="150" cy="120" r="5" fill="#A5D6A7">
-            <animate attributeName="cy" dur="2s" values="120;110;120" repeatCount="indefinite" />
-        </circle>
-        <circle cx="250" cy="140" r="4" fill="#A5D6A7">
-            <animate attributeName="cy" dur="2.5s" values="140;130;140" repeatCount="indefinite" />
-        </circle>
-        <circle cx="200" cy="100" r="6" fill="#A5D6A7">
-            <animate attributeName="cy" dur="3s" values="100;90;100" repeatCount="indefinite" />
-        </circle>
-    </g>
+
 </svg> 
