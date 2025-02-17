@@ -1,0 +1,63 @@
+<svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <!-- Circular background -->
+    <circle cx="200" cy="200" r="180" fill="#f8f9fa" />
+    
+    <!-- Tree trunk -->
+    <path d="M190 350 
+             C190 350, 180 300, 185 250
+             C190 200, 195 180, 200 150
+             C205 180, 210 200, 215 250
+             C220 300, 210 350, 210 350
+             Z" 
+          fill="#5D4037"/>
+    
+    <!-- Tree foliage groups -->
+    <g class="tree-leaves">
+        <!-- Main foliage -->
+        <path d="M200 50
+                 C260 50, 300 100, 300 150
+                 C300 200, 260 240, 200 240
+                 C140 240, 100 200, 100 150
+                 C100 100, 140 50, 200 50Z" 
+              fill="#66BB6A">
+            <animate attributeName="d" 
+                    dur="4s" 
+                    repeatCount="indefinite"
+                    values="
+                        M200 50 C260 50, 300 100, 300 150 C300 200, 260 240, 200 240 C140 240, 100 200, 100 150 C100 100, 140 50, 200 50Z;
+                        M200 45 C270 45, 310 95, 310 155 C310 205, 270 245, 200 245 C130 245, 90 205, 90 155 C90 95, 130 45, 200 45Z;
+                        M200 50 C260 50, 300 100, 300 150 C300 200, 260 240, 200 240 C140 240, 100 200, 100 150 C100 100, 140 50, 200 50Z"
+                    />
+        </path>
+        
+        <!-- Additional foliage layers -->
+        <path d="M200 80
+                 C240 80, 270 110, 270 150
+                 C270 190, 240 220, 200 220
+                 C160 220, 130 190, 130 150
+                 C130 110, 160 80, 200 80Z" 
+              fill="#81C784">
+            <animate attributeName="d" 
+                    dur="3s" 
+                    repeatCount="indefinite"
+                    values="
+                        M200 80 C240 80, 270 110, 270 150 C270 190, 240 220, 200 220 C160 220, 130 190, 130 150 C130 110, 160 80, 200 80Z;
+                        M200 75 C250 75, 280 105, 280 155 C280 195, 250 225, 200 225 C150 225, 120 195, 120 155 C120 105, 150 75, 200 75Z;
+                        M200 80 C240 80, 270 110, 270 150 C270 190, 240 220, 200 220 C160 220, 130 190, 130 150 C130 110, 160 80, 200 80Z"
+                    />
+        </path>
+    </g>
+
+    <!-- Small floating elements -->
+    <g class="floating-elements">
+        <circle cx="150" cy="120" r="5" fill="#A5D6A7">
+            <animate attributeName="cy" dur="2s" values="120;110;120" repeatCount="indefinite" />
+        </circle>
+        <circle cx="250" cy="140" r="4" fill="#A5D6A7">
+            <animate attributeName="cy" dur="2.5s" values="140;130;140" repeatCount="indefinite" />
+        </circle>
+        <circle cx="200" cy="100" r="6" fill="#A5D6A7">
+            <animate attributeName="cy" dur="3s" values="100;90;100" repeatCount="indefinite" />
+        </circle>
+    </g>
+</svg> 

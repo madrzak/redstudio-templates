@@ -1,0 +1,33 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Define radial gradient for metallic effect -->
+  <defs>
+    <radialGradient id="coinGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f7f7f7"/>
+      <stop offset="50%" stop-color="#c9c9c9"/>
+      <stop offset="100%" stop-color="#8c8c8c"/>
+    </radialGradient>
+    <radialGradient id="shineGradient" cx="30%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="white" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer coin shape -->
+  <circle cx="100" cy="100" r="90" fill="url(#coinGradient)" stroke="#777" stroke-width="5"/>
+
+  <!-- Inner coin shine -->
+  <circle cx="100" cy="100" r="85" fill="url(#shineGradient)"/>
+
+  <!-- Coin rim effect -->
+  <circle cx="100" cy="100" r="92" fill="none" stroke="#555" stroke-width="4"/>
+
+  <!-- Embossed text -->
+  <text x="50" y="110" font-family="Arial" font-size="30" font-weight="bold"
+        fill="#777" stroke="white" stroke-width="1">COIN</text>
+
+  <!-- Stars for decoration -->
+  <circle cx="40" cy="60" r="5" fill="#777" stroke="white" stroke-width="1"/>
+  <circle cx="160" cy="60" r="5" fill="#777" stroke="white" stroke-width="1"/>
+  <circle cx="40" cy="140" r="5" fill="#777" stroke="white" stroke-width="1"/>
+  <circle cx="160" cy="140" r="5" fill="#777" stroke="white" stroke-width="1"/>
+</svg>

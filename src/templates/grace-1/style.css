@@ -36,23 +36,20 @@ body {
     z-index: 1;
 }
 
-.image-wrapper {
-    width: 60%;
-    height: 60%;
-    overflow: hidden;
-    border-radius: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+.center-design {
+    width: 50%;
+    height: 50%;
 }
 
-.main-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+/* Subtle hover effect for the tree */
+.center-design:hover .tree-leaves path {
+    transition: fill 0.3s ease;
+    fill: #74c278;
 }
 
-.main-image:hover {
-    transform: scale(1.05);
+.center-design:hover .floating-elements circle {
+    transition: fill 0.3s ease;
+    fill: #b8e6ba;
 }
 
 .grass-container {
