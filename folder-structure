@@ -5,6 +5,7 @@
 └── src/
     ├── main.js
     ├── styles.css
+    ├── templates.config.js
     └── templates/
         └── landing-page/
             ├── index.html

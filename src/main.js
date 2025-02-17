@@ -1,4 +1,4 @@
-import { templates } from './templates/templates.config.js';
+import { templates } from './templates.config.js';
 
 // Function to get template information
 function getTemplates() {
