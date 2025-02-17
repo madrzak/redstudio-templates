@@ -5,48 +5,27 @@ const leafImages = [
 
 function initGrass() {
     const container = document.querySelector('.grass-container');
-    const bunchCount = 40;
+    const bunchCount = 25; // Increased density for bottom edge
 
-    // Add grass bunches around the container edges
+    // Add grass bunches along bottom edge
     for (let i = 0; i < bunchCount; i++) {
-        addGrassBunch(container);
+        addGrassBunch(container, i, bunchCount);
     }
 }
 
-function addGrassBunch(container) {
+function addGrassBunch(container, index, totalBunches) {
     const bunch = document.createElement('div');
     bunch.className = 'grass-bunch';
     
-    const side = Math.floor(Math.random() * 4);
     const bladesInBunch = 8 + Math.floor(Math.random() * 5); // 8-12 blades per bunch
     
-    // Position the bunch
-    switch(side) {
-        case 0: // Top
-            bunch.style.top = '-20px';
-            bunch.style.left = `${Math.random() * 100}%`;
-            bunch.style.transformOrigin = 'bottom center';
-            bunch.style.transform = 'rotate(180deg)';
-            break;
-        case 1: // Right
-            bunch.style.right = '-20px';
-            bunch.style.top = `${Math.random() * 100}%`;
-            bunch.style.transformOrigin = 'left center';
-            bunch.style.transform = 'rotate(270deg)';
-            break;
-        case 2: // Bottom
-            bunch.style.bottom = '-20px';
-            bunch.style.left = `${Math.random() * 100}%`;
-            bunch.style.transformOrigin = 'top center';
-            break;
-        case 3: // Left
-            bunch.style.left = '-20px';
-            bunch.style.top = `${Math.random() * 100}%`;
-            bunch.style.transformOrigin = 'right center';
-            bunch.style.transform = 'rotate(90deg)';
-            break;
-    }
-
+    // Position along bottom edge
+    bunch.style.bottom = '-20px';
+    // Distribute bunches evenly with some randomness
+    const position = (index / totalBunches) * 100 + (Math.random() * 8 - 4);
+    bunch.style.left = `${position}%`;
+    bunch.style.transformOrigin = 'top center';
+    
     // Create blades with varying properties for realism
     for (let i = 0; i < bladesInBunch; i++) {
         const blade = document.createElement('div');
@@ -57,20 +36,20 @@ function addGrassBunch(container) {
         blade.style.backgroundSize = 'contain';
         blade.style.backgroundRepeat = 'no-repeat';
         
-        // Vary the size
-        const heightVariation = 60 + Math.random() * 100; // Height between 60-160px
+        // Vary the size - taller grass for more impact
+        const heightVariation = 80 + Math.random() * 120; // Height between 80-200px
         const widthVariation = 8 + Math.random() * 8; // Width between 8-16px
         blade.style.height = `${heightVariation}px`;
         blade.style.width = `${widthVariation}px`;
         
         // Position within bunch - create a natural spread
-        const spreadX = -20 + Math.random() * 40; // Wider spread
-        const spreadY = Math.random() * 10; // Slight vertical variation
+        const spreadX = -25 + Math.random() * 50; // Wider spread for bottom only
+        const spreadY = Math.random() * 15; // Slight vertical variation
         blade.style.left = `${spreadX}px`;
         blade.style.bottom = `${spreadY}px`;
         
         // Rotation and scale variations
-        const baseRotation = -25 + Math.random() * 50; // -25 to 25 degrees
+        const baseRotation = -30 + Math.random() * 60; // -30 to 30 degrees
         const scaleX = 0.7 + Math.random() * 0.6; // Scale between 0.7 and 1.3
         const scaleY = 0.9 + Math.random() * 0.2; // Slight height variation
         blade.style.transform = `
