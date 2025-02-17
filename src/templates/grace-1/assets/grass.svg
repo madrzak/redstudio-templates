@@ -1,0 +1,40 @@
+<svg width="32" height="160" viewBox="0 0 32 160" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grassGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#2d5016"/>
+      <stop offset="30%" style="stop-color:#4a8505"/>
+      <stop offset="100%" style="stop-color:#66bb6a"/>
+    </linearGradient>
+    <!-- Texture gradient -->
+    <linearGradient id="textureGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#ffffff" stop-opacity="0.1"/>
+      <stop offset="50%" style="stop-color:#000000" stop-opacity="0.1"/>
+      <stop offset="100%" style="stop-color:#ffffff" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Main grass blade -->
+  <path d="M16 160
+           C16 160, 20 120, 18 80
+           C16 40, 12 20, 16 0
+           C20 20, 24 40, 22 80
+           C20 120, 16 160, 16 160"
+        fill="url(#grassGradient)"
+        stroke="#2d5016"
+        stroke-width="0.5"/>
+  
+  <!-- Center vein -->
+  <path d="M16 160 L16 0"
+        stroke="#2d5016"
+        stroke-width="0.5"
+        opacity="0.3"/>
+  
+  <!-- Texture details -->
+  <path d="M16 160
+           C16 160, 20 120, 18 80
+           C16 40, 12 20, 16 0"
+        stroke="url(#textureGradient)"
+        stroke-width="1"
+        fill="none"
+        opacity="0.2"/>
+</svg> 
