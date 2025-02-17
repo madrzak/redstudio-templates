@@ -2,6 +2,10 @@
     --background-color: #f0f5ff;
 }
 
+html, body {
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -13,8 +17,7 @@ body {
     font-family: 'Arial', sans-serif;
 }
 
-.container {
-    position: relative;
+.content-container {
     width: 90vw;
     max-width: 1200px;
     height: 80vh;
@@ -23,22 +26,6 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     overflow: hidden;
 }
-
-.content {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1;
-}
-
-.center-design {
-    width: 50%;
-    height: 50%;
-}
-
 
 .grass-container {
     position: absolute;
