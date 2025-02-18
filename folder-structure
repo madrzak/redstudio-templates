@@ -7,7 +7,7 @@
     ├── styles.css
     ├── templates.config.js
     └── templates/
-        └── landing-page/
+        └── example-template-name/
             ├── index.html
             ├── style.css
             └── assets/
