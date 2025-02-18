@@ -16,5 +16,14 @@ export const templates = [
             thumbnail: "/src/templates/grace-1/assets/thumbnail.png",
             path: "/src/templates/grace-1/index.html"
         }
+    },
+    {
+        folder: 'classic-blog',
+        info: {
+            name: "Classic Blog",
+            description: "An old-school blog template with sidebar, perfect for personal blogging",
+            thumbnail: "/src/templates/classic-blog/assets/thumbnail.png",
+            path: "/src/templates/classic-blog/index.html"
+        }
     }
 ]; 
