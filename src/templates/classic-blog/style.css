@@ -127,6 +127,28 @@ END OF GENERAL
 /* ========================
 BLOG
 ======================== */
+/* one across */
+.blog-posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.blog-post {
+    width: 100%;
+}
+/* two across */
+/*.blog-post-container {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap; !* Allows wrapping *!*/
+/*    gap: 1rem; !* Space between items *!*/
+/*    justify-content: space-between; !* Distribute evenly *!*/
+/*}*/
+
+/*.blog-post {*/
+/*    width: calc(50% - 0.5rem); !* Ensures two items per row with gap accounted for *!*/
+/*    box-sizing: border-box; !* Prevents padding from affecting width *!*/
+/*}*/
 
 /* Blog Post Styles */
 .blog-post {
