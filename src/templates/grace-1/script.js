@@ -26,16 +26,23 @@ function initGrass() {
 
     for (let i = 0; i < bunchCount; i++) {
         const bunch = addGrassBunch(i, bunchCount);
+        // Calculate absolute position from bottom
+        const position = parseFloat(bunch.style.left);
+        const bottomOffset = parseFloat(bunch.dataset.bottomOffset || 0);
+        bunch.dataset.absoluteBottom = bottomOffset;
         grassBunches.push(bunch);
     }
 
-    // Sort bunches based on their visual position (bottom-most ones should be in front)
+    // Sort bunches based on their absolute bottom position (higher bottom value = lower z-index)
     grassBunches.sort((a, b) => {
-        return parseFloat(a.dataset.zIndex) - parseFloat(b.dataset.zIndex);
+        return parseFloat(b.dataset.absoluteBottom) - parseFloat(a.dataset.absoluteBottom);
     });
 
-    // Append in sorted order
-    grassBunches.forEach(bunch => container.appendChild(bunch));
+    // Append in sorted order and assign z-indices
+    grassBunches.forEach((bunch, index) => {
+        bunch.style.zIndex = 1000 - index;
+        container.appendChild(bunch);
+    });
 }
 
 function addGrassBunch(index, totalBunches) {
@@ -50,6 +57,7 @@ function addGrassBunch(index, totalBunches) {
     bunch.style.transformOrigin = 'top center';
 
     let minBladeBottom = Number.MAX_VALUE;
+    let maxBladeSpread = 0;
 
     for (let i = 0; i < bladesInBunch; i++) {
         const blade = document.createElement('div');
@@ -74,10 +82,23 @@ function addGrassBunch(index, totalBunches) {
         blade.style.position = 'absolute';
         blade.style.left = `${spreadX}px`;
         blade.style.bottom = `${spreadY}px`;
+        
+        // Ensure transform origin is at bottom center and doesn't move during animation
         blade.style.transformOrigin = 'bottom center';
+        blade.style.willChange = 'transform';
+        
+        // Create a wrapper to maintain position
+        const bladeWrapper = document.createElement('div');
+        bladeWrapper.style.position = 'absolute';
+        bladeWrapper.style.width = '100%';
+        bladeWrapper.style.height = '100%';
+        bladeWrapper.style.transformOrigin = 'bottom center';
+        
+        blade.appendChild(bladeWrapper);
 
-        // Track lowest bottom value (indicates foreground position)
+        // Track lowest bottom value and maximum spread
         minBladeBottom = Math.min(minBladeBottom, spreadY);
+        maxBladeSpread = Math.max(maxBladeSpread, Math.abs(spreadX));
 
         // Animation variations
         const animationType = Math.floor(Math.random() * 3);
@@ -109,7 +130,9 @@ function addGrassBunch(index, totalBunches) {
         blade.dataset.scaleX = scaleX;
         blade.dataset.scaleY = scaleY;
 
+        // Apply transform to the blade itself
         blade.style.transform = `
+            translate(0, 0)
             rotate(${baseRotation}deg) 
             scaleX(${scaleX})
             scaleY(${scaleY})
@@ -118,10 +141,10 @@ function addGrassBunch(index, totalBunches) {
         bunch.appendChild(blade);
     }
 
-    // Updated z-index logic: the lower the grass, the higher the z-index
-    const zIndexBase = 1000;
-    bunch.style.zIndex = Math.floor(zIndexBase - minBladeBottom);
-    bunch.dataset.zIndex = bunch.style.zIndex;
+    // Store the absolute bottom position of the bunch
+    bunch.dataset.bottomOffset = minBladeBottom;
+    // Store the maximum spread for potential collision detection
+    bunch.dataset.maxSpread = maxBladeSpread;
 
     return bunch;
 }
@@ -156,12 +179,14 @@ function handleMouseMove(e) {
             const scaleY = parseFloat(blade.dataset.scaleY) * bendScale;
 
             blade.style.transform = `
+                translate(0, 0)
                 rotate(${newRotation}deg)
                 scaleX(${scaleX})
                 scaleY(${scaleY})
             `;
         } else {
             blade.style.transform = `
+                translate(0, 0)
                 rotate(${blade.dataset.baseRotation}deg)
                 scaleX(${blade.dataset.scaleX})
                 scaleY(${blade.dataset.scaleY})

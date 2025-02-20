@@ -1,4 +1,8 @@
-/* Reset and Base Styles */
+
+/* ========================
+GENERAL
+======================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -58,55 +62,6 @@ main {
     grid-template-columns: 7fr 3fr;
     gap: 40px;
 }
-
-/* Blog Post Styles */
-.blog-post {
-    background: white;
-    padding: 30px;
-    border: 1px solid #ddd;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.blog-post h2 {
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-
-.post-meta {
-    color: #666;
-    font-style: italic;
-    margin-bottom: 20px;
-    font-size: 0.9em;
-}
-
-.post-content p {
-    margin-bottom: 20px;
-}
-
-.post-footer {
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.read-more {
-    color: #2c3e50;
-    text-decoration: none;
-}
-
-.tags .tag {
-    background: #eee;
-    padding: 5px 10px;
-    border-radius: 3px;
-    font-size: 0.8em;
-    margin-left: 10px;
-    color: #666;
-}
-
 /* Sidebar Styles */
 .sidebar section {
     background: white;
@@ -154,14 +109,71 @@ footer {
     main {
         grid-template-columns: 1fr;
     }
-    
+
     .container {
         padding: 10px;
     }
-    
+
     nav ul li {
         margin: 0 8px;
     }
+}
+
+/* ========================
+END OF GENERAL
+======================== */
+
+
+/* ========================
+BLOG
+======================== */
+
+/* Blog Post Styles */
+.blog-post {
+    background: white;
+    padding: 30px;
+    border: 1px solid #ddd;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.blog-post-title {
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.blog-post-meta {
+    color: #666;
+    font-style: italic;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+.post-content p {
+    margin-bottom: 20px;
+}
+
+.blog-post-footer {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.read-more {
+    color: #2c3e50;
+    text-decoration: none;
+}
+
+.tags .tag {
+    background: #eee;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 0.8em;
+    margin-left: 10px;
+    color: #666;
 }
 
 /* Blog Card Styles */
@@ -182,42 +194,13 @@ footer {
 .post-image-container:hover img {
     transform: scale(1.1);
 }
-
-.card-title {
-    transition: color 0.3s ease-in-out;
-}
-
-.card-hover {
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease-in-out;
-}
-
-.card-hover:hover {
-    transform: translateY(-5px);
-}
-
-.card-hover:hover .card-title {
-    transition: transform 0.3s ease-in-out;
-}
-
-.card-hover:hover img {
-    transform: scale(1.1);
-    transition: transform 0.3s ease-in-out;
-}
-
-a.card-link {
-    color: inherit;
-}
-
-a.card-link:hover {
-    text-decoration: none;
-}
-
 .tag-container {
     display: inline-block;
 }
-
 .badge {
     display: inline-block;
-} 
+}
+
+/* ========================
+END OF BLOG
+======================== */
