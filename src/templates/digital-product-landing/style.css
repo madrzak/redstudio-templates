@@ -118,6 +118,19 @@ h1, h2, h3, h4, h5, h6 {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active {
+    background: var(--white) !important;
+    color: var(--gradient-start) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    outline: none !important;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+}
+
 .btn-outline-primary {
     color: var(--white);
     border: 2px solid var(--white);
