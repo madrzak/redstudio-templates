@@ -25,5 +25,14 @@ export const templates = [
             thumbnail: "/src/templates/classic-blog/assets/thumbnail.png",
             path: "/src/templates/classic-blog/index.html"
         }
+    },
+    {
+        folder: 'digital-product-landing',
+        info: {
+            name: "Digital Product Landing",
+            description: "A modern single-page landing for digital products with lead capture, testimonials, and FAQ",
+            thumbnail: "/src/templates/digital-product-landing/assets/thumbnail.png",
+            path: "/src/templates/digital-product-landing/index.html"
+        }
     }
 ]; 
