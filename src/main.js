@@ -18,7 +18,14 @@ function renderTemplateCards() {
                 <div class="card">
                     <div class="row no-gutters">
                         <div class="col-md-6">
-                            <img src="${template.thumbnail}" class="template-preview w-100 h-100" alt="${template.name}">
+                            <div class="template-preview-container">
+                                <iframe 
+                                    src="${template.path}" 
+                                    class="template-preview-iframe"
+                                    title="${template.name} preview"
+                                    loading="lazy"
+                                ></iframe>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="card-body d-flex flex-column h-100">
@@ -28,7 +35,7 @@ function renderTemplateCards() {
                                         <p class="card-text">${template.description}</p>
                                     </div>
                                     <div class="btn-container">
-                                        <a href="${template.path}" class="btn btn-primary">View</a>
+                                        <a href="${template.path}" class="btn btn-primary" target="_blank">View Full</a>
                                     </div>
                                 </div>
                             </div>

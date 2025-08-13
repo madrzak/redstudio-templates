@@ -141,10 +141,10 @@ BLOG
 /*    justify-content: space-between; !* Distribute evenly *!*/
 /*}*/
 
-/*.blog-post {*/
-/*    width: calc(50% - 0.5rem); !* Ensures two items per row with gap accounted for *!*/
-/*    box-sizing: border-box; !* Prevents padding from affecting width *!*/
-/*}*/
+.blog-post {
+    width: calc(50% - 0.5rem); /* Ensures two items per row with gap accounted for */
+    box-sizing: border-box; /* Prevents padding from affecting width */
+}
 
 /* Blog Post Styles */
 .blog-post {

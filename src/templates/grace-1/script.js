@@ -197,5 +197,5 @@ function handleMouseMove(e) {
 
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM Content Loaded');
-    initGrass();
+    // initGrass();
 });
